@@ -44,6 +44,21 @@ This project is a minimum viable product (MVP) for a job portal built using Reac
    - Search functionality for users to find jobs based on keywords, location, and job type.
    - Filtering options to narrow down search results.
 
+## Additional Features ( If time permits)
+1. **Messaging Between Job Posters and Job Seekers**
+   - Job posters can send messages to job seekers who have applied for their job postings.
+   - Job seekers can reply to messages from job posters.
+   - Messages are stored in the database for record-keeping.
+
+2. **Job Alerts via Email**
+   - Users can set up alerts to receive notifications about new job postings that match their criteria via SMS or email.
+
+3. **User-Generated Company Reviews**
+   - Users can leave reviews and ratings for companies they have interviewed with or worked for.
+
+4. **Bookmarking Jobs**
+   - Users can save job listings they are interested in for easy access later.
+
 ## Technology Stack
 - **Frontend:** React
 - **Backend:** ASP.NET Web API
