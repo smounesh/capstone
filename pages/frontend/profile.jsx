@@ -212,7 +212,7 @@ const Profile = () => {
             </div>
 
             {/* Resume section */}
-            { !isUserRoleApplicant && (
+            { isUserRoleApplicant && (
             <div className="bg-white rounded shadow-lg p-8 mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Resume</h2>
