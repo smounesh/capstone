@@ -27,14 +27,18 @@ const CreateResume = () => {
     // Create a new FormData instance
     const data = new FormData();
     data.append('file', formData.file);
-    data.append('title', formData.title); // If you want to include the title as well
+    data.append('title', formData.title); 
 
     try {
-      await create_resume(data);
-      toast.success('Resume created successfully');
-      setTimeout(() => {
-        router.push('/frontend/profile');
-      }, 500); // Added delay to ensure toast is visible
+      console.debug('Creating resume:', data);
+      const res = await create_resume(data);
+      console.debug('Resume created:', res);
+      if (res.ok){
+        toast.success('Resume created successfully');
+        setTimeout(() => {
+          router.push('/frontend/profile');
+        }, 500); 
+      }
     } catch (error) {
       console.error('Error creating resume:', error);
       toast.error('Failed to create resume. Please try again later.');

@@ -20,7 +20,7 @@ export const post_job = async (formData) => {
             throw new Error(errorMessage.message || 'Failed to post job');
         }
 
-        return await res.json(); // Return the JSON data
+        return await res; // Return the JSON data
     } catch (error) {
         console.error('Error in posting job (service):', error);
         throw error; // Rethrow the error to handle it in the calling function
@@ -48,6 +48,30 @@ export const get_jobs = async () => {
         throw error; // Rethrow the error to handle it in the calling function
     }
 }
+
+// Get My Jobs API
+export const get_my_jobs = async (userId) => {
+    try {
+        const res = await fetch(`${API_BASE_URL}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${Cookies.get('token')}`
+            }
+        });
+
+        if (!res.ok) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message || 'Failed to fetch jobs');
+        }
+
+        return await res.json(); // Return the JSON data
+    }
+    catch (error) {
+        console.error('Error in getting my jobs (service):', error);
+        throw error; // Rethrow the error to handle it in the calling function
+    }
+}
+
 
 // Get specified job API
 export const get_specified_job = async (id) => {

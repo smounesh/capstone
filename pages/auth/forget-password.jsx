@@ -11,9 +11,6 @@ export default function ForgetPassword() {
   const [formData, setFormData] = useState({ email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState({ email: "", password: "", confirmPassword: "" });
 
-
-
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();

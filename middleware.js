@@ -48,7 +48,8 @@ export function middleware(request) {
         '/frontend/jobDetails/*',
         '/frontend/myJobs/*',
         '/frontend/myJobs',,
-        '/frontend/editJobDetails/*'
+        '/frontend/editJobDetails/*',
+        '/frontend/viewApplications/*'
     ],
   };
 

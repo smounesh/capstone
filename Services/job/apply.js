@@ -17,10 +17,10 @@ export const getAllJobApplications = async () => {
             throw new Error(errorMessage.message || 'Failed to fetch job applications');
         }
 
-        return await res.json(); // Return the JSON data
+        return await res; 
     } catch (error) {
         console.error('Error in getting job applications (service):', error);
-        throw error; // Rethrow the error to handle it in the calling function
+        throw error; 
     }
 };
 
@@ -108,6 +108,8 @@ export const updateJobApplication = async (id, applicationData) => {
             const errorMessage = await res.json();
             throw new Error(errorMessage.message || 'Failed to update job application');
         }
+
+        return await res; 
     } catch (error) {
         console.error('Error in updating job application (service):', error);
         throw error; // Rethrow the error to handle it in the calling function

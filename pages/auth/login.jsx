@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import Router from 'next/router';
 import { login_me } from '@/Services/auth';
+import { hasUserProfile } from '@/Services/profile/profile';
 import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '@/Utils/UserSlice';
@@ -48,6 +49,14 @@ export default function Login() {
         // Store user data in local storage and Redux
         localStorage.setItem('user', JSON.stringify(res));
         dispatch(setUserData(res)); 
+
+        const isUserHasProfile = await hasUserProfile();
+        console.debug('isUserHasProfile:', isUserHasProfile);
+        if (!isUserHasProfile.hasProfile) {
+          console.error('User does not have a profile');
+          Router.push('/frontend/createProfile');
+          return;
+        }
 
         // Redirect to the profile page with username and userId
         // Router.push(`/frontend/profile/${name}-${userId}`);

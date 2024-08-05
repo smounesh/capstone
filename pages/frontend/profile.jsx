@@ -25,7 +25,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [isLoggedInUser, setIsLoggedInUser] = useState(false);
   const user = useSelector(state => state.User.userData);
-  const [isUserRoleApplicant, setIsUserRoleApplicant] = useState(false);
+  const [isUserRoleApplicant, setIsUserRoleApplicant] = useState(true);
 
   useEffect(() => {
 
@@ -34,13 +34,12 @@ const Profile = () => {
       await dispatch(setUserData(localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null));
       if (!router.isReady || !username) return; 
       
-      // Split username into username and userId
       const [usernamePart, userId] = username.split('-');
       const numericUserId = Number(userId);
       if (user.userID === numericUserId) { 
         setIsLoggedInUser(true);
       }
-
+      
       if (user.role === 'Applicant') {
         setIsUserRoleApplicant(true);
       }
@@ -135,38 +134,38 @@ const Profile = () => {
 
   return (
     <div className="pt-16 md:pt-20">
-      <NavBar />
-      <div className="w-full h-screen pt-20 md:pt-20 flex items-center justify-center flex-col">
-        {profile && (
-          <div className="md:w-1/2">
-            {isLoggedInUser && (
-              <div className="flex justify-end mb-4">
-                <button
-                  onClick={() => router.push('/frontend/editProfile')}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-                >
-                   <FaPencilAlt />
-                </button>
-                {/* <button
-                  onClick={() => router.push('/frontend/createExperience')}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-                >
-                  Add Experience
-                </button>
-                <button
-                  onClick={() => router.push('/frontend/createEducation')}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-                >
-                  Add Education
-                </button>
-                <button
-                  onClick={() => router.push('/frontend/createSkill')}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Add Skill
-                </button> */}
-              </div>
-            )}
+    <NavBar />
+    <div className="w-full h-screen pt-32 md:pt-32 flex items-center justify-center flex-col"> {/* Increased padding-top */}
+      {profile && (
+        <div className="md:w-1/2 mt-20"> {/* Added margin-top here */}
+          {isLoggedInUser && (
+            <div className="flex justify-end mb-4">
+              <button
+                onClick={() => router.push('/frontend/editProfile')}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+              >
+                <FaPencilAlt />
+              </button>
+              {/* <button
+                onClick={() => router.push('/frontend/createExperience')}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+              >
+                Add Experience
+              </button>
+              <button
+                onClick={() => router.push('/frontend/createEducation')}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+              >
+                Add Education
+              </button>
+              <button
+                onClick={() => router.push('/frontend/createSkill')}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Add Skill
+              </button> */}
+            </div>
+          )}
             <div className="bg-white rounded shadow-lg p-8 mb-4">
               <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold">{profile.name}</h1>
@@ -213,7 +212,7 @@ const Profile = () => {
             </div>
 
             {/* Resume section */}
-            {isUserRoleApplicant && (
+            { !isUserRoleApplicant && (
             <div className="bg-white rounded shadow-lg p-8 mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Resume</h2>
@@ -258,7 +257,7 @@ const Profile = () => {
             )}
 
             {/* Experiences section */}
-            {isUserRoleApplicant && (
+            { isUserRoleApplicant && (
             <div className="bg-white rounded shadow-lg p-8 mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Experiences</h2>
@@ -309,7 +308,7 @@ const Profile = () => {
             )}
 
             {/* Skills section */}
-            {isUserRoleApplicant && (
+            { isUserRoleApplicant && (
             <div className="bg-white rounded shadow-lg p-8 mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Skills</h2>
@@ -362,7 +361,7 @@ const Profile = () => {
             )}
 
             {/* Education section */}
-            {isUserRoleApplicant && (
+            { isUserRoleApplicant && (
             <div className="bg-white rounded shadow-lg p-8 mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Education</h2>

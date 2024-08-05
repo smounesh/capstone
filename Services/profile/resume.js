@@ -50,7 +50,7 @@ export const create_resume = async (formData) => {
       },
       body: formData,
     });
-    const data = await res.json();
+    const data = await res;
     return data;
   } catch (error) {
     console.log('Error in creating resume (service):', error);
@@ -90,7 +90,7 @@ export const update_resume = async (resumeId, formData) => {
       throw new Error(`Failed to update resume: ${errorData.message}`);
     }
 
-    const updatedResume = await res.json();
+    const updatedResume = await res;
     return updatedResume;
   } catch (error) {
     console.error('Error updating resume:', error);
